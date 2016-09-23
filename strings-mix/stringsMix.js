@@ -21,6 +21,28 @@ var mix = function (a, b) {
   return result;
 }
 
+/**
+ * Group characters in the format c:cc...
+ */
+function group(input) {
+  var groups = {};
+  input.split('').forEach(function(c){
+    groups[c] = (groups[c] || '') + c;
+  });
+  return groups;
+}
+
+/**
+ * Remove all none lowercase chars from input
+ */
+function normalize(input) {
+  return input.replace(/[^a-z]/g,'');
+}
+
 if ( typeof module !== "undefined" ) {
-  module.exports = mix;
+  module.exports = {
+    mix: mix,
+    normalize: normalize,
+    group: group
+  };
 }
